@@ -24,4 +24,16 @@ public class MeasureMsg implements Message {
     public String getMsgType() {
         return "measure";
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getMeasureType() {
+        return measureType;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
 }

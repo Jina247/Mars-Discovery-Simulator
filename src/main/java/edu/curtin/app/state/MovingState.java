@@ -25,7 +25,7 @@ public class MovingState implements ProbeState {
             probe.setState(new LowPowerMode());
         } else {
             Location next = calcDistance(current, desLocation, probe.getMaxDistance());
-            System.out.println("TO " + probe.getName().toUpperCase() + ": MOVE BY " + toStringFormat(current, desLocation));
+            System.out.println("TO " + probe.getName().toUpperCase() + ": MOVE BY " + toStringFormat(current, next));
             probe.setCurrentLocation(next);
         }
     }

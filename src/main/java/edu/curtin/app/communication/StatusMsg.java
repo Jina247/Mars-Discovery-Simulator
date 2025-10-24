@@ -11,11 +11,15 @@ public class StatusMsg implements Message {
 
     @Override
     public void readMessage(MarSciSat sat) {
-
+        sat.handleStatusCommand(name);
     }
 
     @Override
     public String getMsgType() {
         return "status";
+    }
+
+    public String getName() {
+        return name;
     }
 }

@@ -6,6 +6,6 @@ public class Rover extends Probe {
     }
     @Override
     public double getMaxDistance() {
-        return 0.018;
+        return 0.004;
     }
 }

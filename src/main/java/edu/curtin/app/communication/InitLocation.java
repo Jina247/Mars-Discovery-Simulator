@@ -15,11 +15,23 @@ public class InitLocation implements Message {
 
     @Override
     public void readMessage(MarSciSat sat) {
-
+        sat.handleInitLocation(name, lat, lon);
     }
 
     @Override
     public String getMsgType() {
         return "at";
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getLat() {
+        return lat;
+    }
+
+    public double getLon() {
+        return lon;
     }
 }

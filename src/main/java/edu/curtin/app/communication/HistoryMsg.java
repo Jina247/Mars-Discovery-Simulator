@@ -11,11 +11,15 @@ public class HistoryMsg implements Message {
 
     @Override
     public void readMessage(MarSciSat sat) {
-
+        sat.handleHistoryCommand(name);
     }
 
     @Override
     public String getMsgType() {
         return "history";
+    }
+
+    public String getName() {
+        return name;
     }
 }
