@@ -4,7 +4,7 @@ import edu.curtin.app.probe.Location;
 import edu.curtin.app.probe.Probe;
 
 public class MovingState implements ProbeState {
-    private Location desLocation;
+    private final Location desLocation;
     public MovingState(Location desLocation) {
         this.desLocation = desLocation;
     }

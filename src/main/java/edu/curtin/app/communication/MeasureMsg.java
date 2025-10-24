@@ -17,7 +17,7 @@ public class MeasureMsg implements Message {
 
     @Override
     public void readMessage(MarSciSat sat) {
-
+        sat.handleMeasureCommand(name, measureType, duration);
     }
 
     @Override

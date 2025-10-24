@@ -6,5 +6,5 @@ import java.util.Collection;
 
 public interface Observer {
     void onSolComplete(int sol, Collection<Probe> probes);
-    void onHistoryRequest(String probeName);
+    void onHistoryRequest(Probe probe);
 }

@@ -99,7 +99,7 @@ public class MarSciSat {
     }
 
     public void handleHistoryCommand(String probeName) {
-        // Will be handled by MissionTracker observer
+        // Will be handled by HistoryObserver observer
         notifyHistoryRequest(probeName);
     }
 
