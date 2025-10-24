@@ -5,6 +5,9 @@ import edu.curtin.app.probe.Probe;
 
 public class MovingState implements ProbeState {
     private Location desLocation;
+    public MovingState(Location desLocation) {
+        this.desLocation = desLocation;
+    }
 
     @Override
     public String getState() {
@@ -18,7 +21,7 @@ public class MovingState implements ProbeState {
 
         if (distance <= probe.getMaxDistance()) {
             System.out.println("TO " + probe.getName().toUpperCase() + ": MOVE BY " + toStringFormat(current, desLocation));
-            probe.setCurrentLocation(current);
+            probe.setCurrentLocation(desLocation);
             probe.setState(new LowPowerMode());
         } else {
             Location next = calcDistance(current, desLocation, probe.getMaxDistance());

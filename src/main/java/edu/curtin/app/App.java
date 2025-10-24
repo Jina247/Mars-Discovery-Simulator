@@ -12,9 +12,7 @@ import edu.curtin.app.state.ProbeState;
 public class App
 {
     public static void main(String[] args) {
-        Location location = new Location(-11.45, 45.56)
-        Probe drone = new Drone("1", location);
 
-        System.out.println(Hello.getHello());
+
     }
 }

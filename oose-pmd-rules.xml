@@ -60,7 +60,7 @@ Ensure there's a copy of this file in the same directory(ies) as build.gradle.
 
 -->
 
-<ruleset name="OOSE PMD Rules"
+<ruleset probeName="OOSE PMD Rules"
     xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
@@ -95,7 +95,7 @@ Ensure there's a copy of this file in the same directory(ies) as build.gradle.
     <!-- Throw declarations -->
     <rule ref="category/java/design.xml/SignatureDeclareThrowsException">
         <properties>
-            <property name="IgnoreJUnitCompletely" value="false" />
+            <property probeName="IgnoreJUnitCompletely" value="false" />
         </properties>
     </rule>
 
@@ -141,7 +141,7 @@ Ensure there's a copy of this file in the same directory(ies) as build.gradle.
     <rule ref="category/java/errorprone.xml/CloseResource">
         <properties>
             <!-- Permit new Scanner(System.in) _without_ closing -->
-            <property name="violationSuppressXPath"
+            <property probeName="violationSuppressXPath"
                       value=".[pmd-java:typeIs('java.util.Scanner')]/../ConstructorCall/ArgumentList/FieldAccess[@Name='in']/TypeExpression/ClassOrInterfaceType[@SimpleName='System']" />
         </properties>
     </rule>
@@ -175,7 +175,7 @@ Ensure there's a copy of this file in the same directory(ies) as build.gradle.
         <properties>
             <!-- Permit a static final field named 'logger' (where normally static final fields
             are constants and hence named in UPPERCASE. -->
-            <property name="violationSuppressXPath"
+            <property probeName="violationSuppressXPath"
                       value=".[pmd-java:typeIs('java.util.logging.Logger')]" />
         </properties>
     </rule>

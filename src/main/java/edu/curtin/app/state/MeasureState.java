@@ -23,7 +23,7 @@ public class MeasureState implements ProbeState {
     public void handleSol(Probe probe, int sol) {
         String types = measurementTypes.stream()
                 .map(String::toUpperCase)
-                .collect(Collectors.joining(","));
+                .collect(Collectors.joining(", "));
         System.out.println("TO " + probe.getName().toUpperCase() + ": MEASURE " + types);
 
         Map<String, Double> measurements = new HashMap<>();

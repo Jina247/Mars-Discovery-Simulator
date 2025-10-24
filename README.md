@@ -7,7 +7,7 @@ This is a [Gradle][]-based Java project structure. Provided you have the [OpenJD
 [Gradle]: https://gradle.org/
 [OpenJDK]: https://adoptium.net/temurin/releases/
 
-Put your source code in `src/main/java` (or in further subdirectories inside that, according to package). To change the name or package of the main class, make sure to update the `mainClass` line in the configuration file `build.gradle`.
+Put your source code in `src/main/java` (or in further subdirectories inside that, according to package). To change the probeName or package of the main class, make sure to update the `mainClass` line in the configuration file `build.gradle`.
 
 
 ## Running
