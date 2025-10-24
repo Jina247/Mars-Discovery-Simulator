@@ -13,4 +13,9 @@ public class StatusMsg implements Message {
     public void readMessage(MarSciSat sat) {
 
     }
+
+    @Override
+    public String getMsgType() {
+        return "status";
+    }
 }

@@ -6,17 +6,22 @@ import java.util.List;
 
 public class MeasureMsg implements Message {
     private final String name;
-    private final List<String> measureTypes;
+    private final String measureType;
     private int duration;
 
-    public MeasureMsg(String name, List<String> measureTypes, int duration) {
+    public MeasureMsg(String name, String measureType, int duration) {
         this.name = name;
-        this.measureTypes = measureTypes;
+        this.measureType = measureType;
         this.duration = duration;
     }
 
     @Override
     public void readMessage(MarSciSat sat) {
 
+    }
+
+    @Override
+    public String getMsgType() {
+        return "measure";
     }
 }

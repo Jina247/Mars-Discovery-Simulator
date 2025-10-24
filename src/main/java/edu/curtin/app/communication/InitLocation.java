@@ -2,11 +2,15 @@ package edu.curtin.app.communication;
 
 import edu.curtin.app.simulation.MarSciSat;
 
-public class HistoryMsg implements Message {
+public class InitLocation implements Message {
     private final String name;
+    private final double lat;
+    private final double lon;
 
-    public HistoryMsg(String name) {
+    public InitLocation(String name, double lat, double lon) {
         this.name = name;
+        this.lat = lat;
+        this.lon = lon;
     }
 
     @Override
@@ -16,6 +20,6 @@ public class HistoryMsg implements Message {
 
     @Override
     public String getMsgType() {
-        return "history";
+        return "at";
     }
 }

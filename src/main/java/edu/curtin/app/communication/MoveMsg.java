@@ -1,6 +1,5 @@
 package edu.curtin.app.communication;
 
-import edu.curtin.app.probe.Location;
 import edu.curtin.app.simulation.MarSciSat;
 
 public class MoveMsg implements Message {
@@ -18,4 +17,10 @@ public class MoveMsg implements Message {
     public void readMessage(MarSciSat sat) {
 
     }
+
+    @Override
+    public String getMsgType() {
+        return "move";
+    }
+
 }
