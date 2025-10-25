@@ -18,14 +18,17 @@ public class MovingState implements ProbeState {
     public void handleSol(Probe probe, int sol) {
         Location current = probe.getCurrentLocation();
         double distance = current.distanceTo(desLocation);
-
         if (distance <= probe.getMaxDistance()) {
-            System.out.println("TO " + probe.getName().toUpperCase() + ": MOVE BY " + toStringFormat(current, desLocation));
+            String moveCommand = toStringFormat(current, desLocation);
+            System.out.println("TO " + probe.getName().toUpperCase() + ": MOVE BY " + moveCommand);
+            probe.getProbeActivities(sol, moveCommand);
             probe.setCurrentLocation(desLocation);
             probe.setState(new LowPowerMode());
         } else {
             Location next = calcDistance(current, desLocation, probe.getMaxDistance());
-            System.out.println("TO " + probe.getName().toUpperCase() + ": MOVE BY " + toStringFormat(current, next));
+            String moveCommand = toStringFormat(current, next);
+            System.out.println("TO " + probe.getName().toUpperCase() + ": MOVE BY " + moveCommand);
+            probe.getProbeActivities(sol, moveCommand);
             probe.setCurrentLocation(next);
         }
     }
