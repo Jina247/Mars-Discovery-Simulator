@@ -5,7 +5,7 @@ import edu.curtin.app.probe.Probe;
 public class LowPowerMode implements ProbeState {
     @Override
     public String getState() {
-        return "LOW_MODE";
+        return "LOW-POWER";
     }
 
     @Override

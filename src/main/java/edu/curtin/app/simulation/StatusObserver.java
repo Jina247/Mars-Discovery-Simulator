@@ -12,7 +12,7 @@ public class StatusObserver implements Observer {
     public void onSolComplete(int sol, Collection<Probe> probes) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("diagnostic.txt", true))) {
             for (Probe p : probes) {
-                String status = String.format("%s at %.6f %.6f, %s", p.getName(), p.getCurrentLocation().getLatitude(),
+                String status = String.format("%s at %.6f %.6f, %s\n", p.getName().toUpperCase(), p.getCurrentLocation().getLatitude(),
                         p.getCurrentLocation().getLongitude(), p.getState().getState().toUpperCase());
                 writer.write(status);
             }
@@ -23,7 +23,8 @@ public class StatusObserver implements Observer {
     }
 
     @Override
-    public void onHistoryRequest(Probe probe) {
-
+    public void onHistoryRequest(String probeName, Collection<Probe> probes) {
+        // Handled by HistoryObserver
     }
 }
+

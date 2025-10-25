@@ -16,27 +16,26 @@ public class MeasureState implements ProbeState {
     }
     @Override
     public String getState() {
-        return "MEASURE" + String.join(", ", measurementTypes).toUpperCase();
+        return "MEASURE: " + String.join(", ", measurementTypes).toUpperCase();
     }
 
     @Override
     public void handleSol(Probe probe, int sol) {
         String types = String.join(", ", measurementTypes);
-        System.out.println("TO " + probe.getName().toUpperCase() + ": MEASURE " + types);
+        System.out.println("TO " + probe.getName().toUpperCase() + ": MEASURE " + types.toUpperCase());
 
         Map<String, Double> measurements = new TreeMap<>();
         Random random = new Random();
         for (String type : measurementTypes) {
             double randomValue = random.nextDouble();
             measurements.put(type, randomValue);
-            System.out.println(type + " = " + String.format("%.4f", randomValue));
         }
         String activity = measurements.entrySet()
                         .stream().map(entry ->
-                        entry.getKey().replace(" ", "-").toUpperCase() + "=" + entry.getValue())
+                        entry.getKey().replace(" ", "-").toUpperCase() + "=" + String.format("%.4f", entry.getValue()))
                         .collect(Collectors.joining(", "));
-
-        probe.getProbeActivities(sol, activity);
+        System.out.println(activity);
+        probe.record(sol, activity);
         duration--;
         if (duration <= 0) {
             probe.setState(new LowPowerMode());

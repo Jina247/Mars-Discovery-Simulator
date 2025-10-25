@@ -4,6 +4,7 @@ import edu.curtin.app.CommsGenerator;
 import edu.curtin.app.communication.*;
 import edu.curtin.app.probe.*;
 import edu.curtin.app.state.*;
+
 import java.util.*;
 
 public class MarSciSat {
@@ -99,7 +100,6 @@ public class MarSciSat {
     }
 
     public void handleHistoryCommand(String probeName) {
-        // Will be handled by HistoryObserver observer
         notifyHistoryRequest(probeName);
     }
 
@@ -111,7 +111,7 @@ public class MarSciSat {
 
     private void notifyHistoryRequest(String probeName) {
         for (Observer observer : observers) {
-            observer.onHistoryRequest(probeName);
+            observer.onHistoryRequest(probeName, probes.values());
         }
     }
 }

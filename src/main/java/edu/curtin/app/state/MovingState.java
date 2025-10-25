@@ -11,7 +11,7 @@ public class MovingState implements ProbeState {
 
     @Override
     public String getState() {
-        return "MOVING";
+        return "DRIVING";
     }
 
     @Override
@@ -21,14 +21,14 @@ public class MovingState implements ProbeState {
         if (distance <= probe.getMaxDistance()) {
             String moveCommand = toStringFormat(current, desLocation);
             System.out.println("TO " + probe.getName().toUpperCase() + ": MOVE BY " + moveCommand);
-            probe.getProbeActivities(sol, moveCommand);
+            probe.record(sol, moveCommand);
             probe.setCurrentLocation(desLocation);
             probe.setState(new LowPowerMode());
         } else {
             Location next = calcDistance(current, desLocation, probe.getMaxDistance());
             String moveCommand = toStringFormat(current, next);
             System.out.println("TO " + probe.getName().toUpperCase() + ": MOVE BY " + moveCommand);
-            probe.getProbeActivities(sol, moveCommand);
+            probe.record(sol, moveCommand);
             probe.setCurrentLocation(next);
         }
     }

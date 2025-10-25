@@ -39,19 +39,19 @@ public abstract class Probe {
         probeActivities.put(sol, activity);
     }
 
-    public Map<Integer, String> getProbeActivities(int sol, String activity) {
+    public Map<Integer, String> getProbeActivities() {
         return new TreeMap<>(probeActivities);
     }
 
     public void printHistory() {
-        System.out.println("TO EARTH: " + name.toUpperCase() + " ACTIVITIES:");
+        System.out.println("TO EARTH: " + name.toUpperCase() + " ACTIVITIES: ");
         if (probeActivities.isEmpty()) {
-            System.out.println("    (No activities recorded)");
+            System.out.println("\t(No activities recorded)");
             return;
         }
 
         for (Map.Entry<Integer, String> entry : probeActivities.entrySet()) {
-            System.out.println("    SOL " + entry.getKey() + ": " + entry.getValue());
+            System.out.println("\tSOL " + entry.getKey() + ": " + entry.getValue());
         }
     }
     public abstract double getMaxDistance();
