@@ -5,4 +5,5 @@ import edu.curtin.app.probe.Probe;
 public interface ProbeState {
     String getState();
     void handleSol(Probe probe, int sol);
+    void updateMeasurementType(String type, int duration);
 }

@@ -83,8 +83,8 @@ public class MarSciSat {
     public void handleMeasureCommand(String probeName, String type, int duration) {
         Probe probe = probes.get(probeName);
         if (probe != null) {
-            if (probe.getState() instanceof MeasureState) {
-                ((MeasureState) probe.getState()).updateMeasurementType(type, duration);
+            if (probe.getState().getState().equals("MEASURE")) {
+                probe.getState().updateMeasurementType(type, duration);
             } else {
                 probe.setState(new MeasureState(type, duration));
             }

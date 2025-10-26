@@ -12,4 +12,9 @@ public class LowPowerMode implements ProbeState {
     public void handleSol(Probe probe, int sol) {
 
     }
+
+    @Override
+    public void updateMeasurementType(String type, int duration) {
+
+    }
 }

@@ -33,6 +33,11 @@ public class MovingState implements ProbeState {
         }
     }
 
+    @Override
+    public void updateMeasurementType(String type, int duration) {
+
+    }
+
     public Location calcDistance(Location before, Location after, double maxDistance) {
         double latDiff = after.getLatitude() - before.getLatitude();
         double longDiff = after.getLongitude() - before.getLongitude();
@@ -47,6 +52,9 @@ public class MovingState implements ProbeState {
     public String toStringFormat(Location before, Location after) {
         double latDiff = after.getLatitude() - before.getLatitude();
         double longDiff = after.getLongitude() - before.getLongitude();
-        return String.format("%.6f %.6f", latDiff, longDiff);
+        String latSign = (latDiff >= 0) ? "+" : "";
+        String longSign = (longDiff >= 0) ? "+" : "";
+
+        return String.format("%s%.6f %s%.6f", latSign, latDiff, longSign, longDiff);
     }
 }

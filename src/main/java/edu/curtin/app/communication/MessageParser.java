@@ -2,7 +2,10 @@ package edu.curtin.app.communication;
 
 public class MessageParser {
     public ParsedMessage parse(String rawMsg) {
-        if (rawMsg == null || rawMsg.trim().isEmpty()) {
+        if (rawMsg == null) {
+            throw new IllegalArgumentException("Message cannot be null");
+        }
+        if (rawMsg.trim().isEmpty()) {
             return new ParsedMessage("Empty message");
         }
 
