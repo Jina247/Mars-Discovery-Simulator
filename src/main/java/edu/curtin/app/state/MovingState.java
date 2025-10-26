@@ -3,9 +3,13 @@ package edu.curtin.app.state;
 import edu.curtin.app.probe.Location;
 import edu.curtin.app.probe.Probe;
 
+/**
+ * Concrete State class implementation
+ */
 public class MovingState implements ProbeState {
     private final Location desLocation;
 
+    // Inject location into constructor
     public MovingState(Location desLocation) {
         this.desLocation = desLocation;
     }
@@ -15,6 +19,17 @@ public class MovingState implements ProbeState {
         return "DRIVING";
     }
 
+    /**
+     * On each Sol, the probe will:
+     *  1. Calculate the remaining distance to its destination
+     *  2. Move either fully to the destination (if within max distance)
+     *     or move partially (if the destination is too far for one Sol)
+     *  3. Record the movement
+     *  4. Switch to LowPowerMode after completing the move
+     *
+     * @param probe The probe performing the movement.
+     * @param sol The current Sol number.
+     */
     @Override
     public void handleSol(Probe probe, int sol) {
         Location current = probe.getCurrentLocation();
@@ -34,7 +49,15 @@ public class MovingState implements ProbeState {
         }
     }
 
-
+    /**
+     * Calculates the next location when the destination is farther than the allowed max distance.
+     * Uses vector scaling to compute a proportional step toward the destination.
+     *
+     * @param before Current location
+     * @param after Destination location
+     * @param maxDistance Maximum travel distance per Sol
+     * @return A new Location representing the next step toward the destination
+     */
     public Location calcDistance(Location before, Location after, double maxDistance) {
         double latDiff = after.getLatitude() - before.getLatitude();
         double longDiff = after.getLongitude() - before.getLongitude();

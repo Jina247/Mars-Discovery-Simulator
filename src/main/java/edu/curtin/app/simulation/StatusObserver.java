@@ -30,15 +30,7 @@ public class StatusObserver implements Observer {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(DIAGNOSTIC_FILE, true))) {
             writer.write("SOL " + sol + "\n");
             for (Probe p : probes) {
-                String status;
-                if (!(p.getState().getState().toUpperCase().equals("MEASURE"))) {
-                    status = String.format("%s at %.6f %.6f, %s\n", p.getName().toUpperCase(), p.getCurrentLocation().getLatitude(),
-                            p.getCurrentLocation().getLongitude(), p.getState().getState().toUpperCase());
-                } else {
-                    MeasureState measureState = (MeasureState) p.getState();
-                    status = String.format("%s at %.6f %.6f, %s: %s\n", p.getName().toUpperCase(), p.getCurrentLocation().getLatitude(),
-                            p.getCurrentLocation().getLongitude(), p.getState().getState().toUpperCase(), measureState.getLastMeasurementResults());
-                }
+                String status = getStatus(p);
                 writer.write(status);
             }
             writer.write("\n");
@@ -48,6 +40,20 @@ public class StatusObserver implements Observer {
             System.err.println("Error writing to diagnostic.txt: " + e.getMessage());
             logger.log(Level.SEVERE, "Failed to write diagnostic file", e);
         }
+    }
+
+    // Helper method to construct the string to be written back
+    private String getStatus(Probe p) {
+        String status;
+        if (!(p.getState().getState().toUpperCase().equals("MEASURE"))) {
+            status = String.format("%s at %.6f %.6f, %s\n", p.getName().toUpperCase(), p.getCurrentLocation().getLatitude(),
+                    p.getCurrentLocation().getLongitude(), p.getState().getState().toUpperCase());
+        } else {
+            MeasureState measureState = (MeasureState) p.getState();
+            status = String.format("%s at %.6f %.6f, %s: %s\n", p.getName().toUpperCase(), p.getCurrentLocation().getLatitude(),
+                    p.getCurrentLocation().getLongitude(), p.getState().getState().toUpperCase(), measureState.getLastMeasurementResults());
+        }
+        return status;
     }
 
 
