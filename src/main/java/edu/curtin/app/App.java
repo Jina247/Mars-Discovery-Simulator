@@ -1,5 +1,6 @@
 package edu.curtin.app;
 
+import edu.curtin.app.exception.InvalidMessageException;
 import edu.curtin.app.probe.ProbeFactory;
 import edu.curtin.app.simulation.HistoryObserver;
 import edu.curtin.app.simulation.MarSciSat;
@@ -24,7 +25,7 @@ public class App
 
     }
 
-    private static void runSimulation() throws IOException {
+    private static void runSimulation() throws IOException, InvalidMessageException {
         CommsGenerator commsGenerator = new CommsGenerator();
         ProbeFactory factory = new ProbeFactory();
         MarSciSat satellite = new MarSciSat(commsGenerator, factory);

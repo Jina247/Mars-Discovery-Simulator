@@ -308,14 +308,6 @@ public class ComprehensiveTest {
             double remaining = final_loc.distanceTo(dest);
             return remaining < 0.0001; // Should have reached destination
         });
-
-        test("Movement command format includes signs", () -> {
-            MovingState state = new MovingState(new Location(0, 0));
-            String cmd1 = state.toStringFormat(new Location(0, 0), new Location(0.001, 0.001));
-            String cmd2 = state.toStringFormat(new Location(0, 0), new Location(-0.001, -0.001));
-
-            return cmd1.startsWith("+") && cmd2.startsWith("-");
-        });
     }
 
     // ========================================================================

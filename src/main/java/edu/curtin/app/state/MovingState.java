@@ -5,6 +5,7 @@ import edu.curtin.app.probe.Probe;
 
 public class MovingState implements ProbeState {
     private final Location desLocation;
+
     public MovingState(Location desLocation) {
         this.desLocation = desLocation;
     }
@@ -33,28 +34,32 @@ public class MovingState implements ProbeState {
         }
     }
 
-    @Override
-    public void updateMeasurementType(String type, int duration) {
-
-    }
 
     public Location calcDistance(Location before, Location after, double maxDistance) {
         double latDiff = after.getLatitude() - before.getLatitude();
         double longDiff = after.getLongitude() - before.getLongitude();
         double totalDist = Math.sqrt(latDiff * latDiff + longDiff * longDiff);
-
+        if (totalDist <= maxDistance) {
+            return after;
+        }
         double ratio = maxDistance / totalDist;
         double newLat = before.getLatitude() + (latDiff * ratio);
         double newLong = before.getLongitude() + (longDiff * ratio);
         return new Location(newLat, newLong);
     }
 
-    public String toStringFormat(Location before, Location after) {
+    // Helper method to construct a string representing the location
+    private String toStringFormat(Location before, Location after) {
         double latDiff = after.getLatitude() - before.getLatitude();
         double longDiff = after.getLongitude() - before.getLongitude();
         String latSign = (latDiff >= 0) ? "+" : "";
         String longSign = (longDiff >= 0) ? "+" : "";
 
         return String.format("%s%.6f %s%.6f", latSign, latDiff, longSign, longDiff);
+    }
+
+    @Override
+    public void updateMeasurementType(String type, int duration) {
+        // Only for measuring state
     }
 }
