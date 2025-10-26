@@ -11,14 +11,4 @@ public class InvalidMessageException extends Exception {
     public InvalidMessageException(String message) {
         super(message);
     }
-
-    /**
-     * Constructs a new InvalidMessageException with the specified detail message
-     * and cause.
-     * @param message the detail message explaining why the message is invalid
-     * @param cause the cause of the exception (e.g., NumberFormatException)
-     */
-    public InvalidMessageException(String message, Throwable cause) {
-        super(message, cause);
-    }
 }
